@@ -7,7 +7,24 @@ body {
   margin: 0 auto;
 }
 
+h1 {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.how-to1 {
+  text-align: center;
+}
+
+.how-to2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
@@ -27,22 +44,19 @@ input[type="time"] {
   transition: border 0.2s;
 }
 
+input[type="time"],
 input[type="text"] {
-  width: 100%;
-}
-
-input[type="time"] {
   flex: 1;
 }
 
 input:focus {
   outline: none;
-  border-color: #a855f7;
+  border-color: #139dff;
 }
 
 #add-btn {
   padding: 12px 24px;
-  background: #a855f7;
+  background: #139dff;
   color: white;
   border: none;
   border-radius: 8px;
@@ -50,11 +64,15 @@ input:focus {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   margin-top: 10px;
-  transition: background 0.2s;
+  transition: background-color 0.3s ease;
 }
 
 #add-btn:hover {
-  background: #9333ea;
+  background-color: #188adc;
+}
+
+#add-btn:active {
+  background-color: #57b3f5;
 }
 
 ul {
@@ -62,21 +80,30 @@ ul {
   padding: 0;
 }
 
+ul li {
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
 .task-content {
   display: flex;
   flex-direction: row;
   justify-content: left;
   align-items: center;
-  height: 100px;
-  border: solid 1px black;
+  min-height: 100px;
+  border: none;
+  background-color: #33aaff;
+  border-radius: 20px;
+  padding: 0 20px;
+  transition: all 0.3s ease;
 }
 
 .task-time {
-  border: solid 1px black;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 15px;
+  min-width: 100px;
 }
 
 .task-info {
@@ -90,7 +117,6 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: solid 1px black;
   gap: 10px;
   padding: 10px 20px;
 }
@@ -98,4 +124,18 @@ ul {
 .task-details h2, p {
   margin: 0;
   padding: 0;
+}
+
+.task-title,
+.task-desc,
+.task-time {
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.completed .task-title,
+.completed .task-desc,
+.completed .task-time {
+  text-decoration: line-through;
+  color: #2474ad !important;
 }
