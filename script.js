@@ -7,8 +7,8 @@ $(document).ready(function() {
     animation: 150
   });
 
-  $('#add-btn').click(function(e) {
-    e.preventDefault();
+  $('#add-btn').click(function(event) {
+    event.preventDefault();
     
     var title = $('input[name=listItem]').val();
     var desc = $('input[name=taskDesc]').val();
@@ -43,18 +43,30 @@ $(document).ready(function() {
       $('input[name=endTime]').val('');
       
       $('ul').sortable('refresh');
+      alert('Task added!');
+    } else {
+      alert('Title still empty!');
     }
   });
 
   $(document).on('dblclick', 'li', function() {
     var $item = $(this);
     
-    $item.addClass('completed');
-    
-    setTimeout(function() {
+    //cek apakah task sudah complete?
+    if ($item.hasClass('completed')) {
+      //kalau udah task di delete
       $item.slideUp(400, function() {
-        $item.appendTo('ul').slideDown(400);
+        $item.remove();
       });
-    }, 300);
+    } else {
+      //kalau belum di mark as completed
+      $item.addClass('completed');
+
+      setTimeout(function() {
+        $item.slideUp(400, function() {
+          $item.appendTo('ul').slideDown(400);
+        });
+      }, 300);
+    }
   });
 });
