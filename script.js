@@ -1,23 +1,20 @@
 $(document).ready(function() {
-  // Enable drag and drop
+  //drag and drop feature using jquery ui
   $('ul').sortable({
-    cursor: 'move',
-    opacity: 0.6,
-    placeholder: 'placeholder',
-    animation: 150
+    cursor: 'move', //mengubah cursor jadi move
+    opacity: 0.6, //mengubah opacity item saat di drag
   });
 
-  $('#add-btn').click(function(event) {
-    event.preventDefault();
+  $('#add-btn').click(function(event) { //tambah task baru
+    event.preventDefault(); //mencegah page reload
     
-    var title = $('input[name=listItem]').val();
-    var desc = $('input[name=taskDesc]').val();
-    var startTime = $('input[name=startTime]').val();
-    var endTime = $('input[name=endTime]').val();
+    var title = $('input[name=listItem]').val(); //ambil value dari input dengan nama listItem
+    var desc = $('input[name=taskDesc]').val(); //ambil value dari input dengan nama taskDesc
+    var startTime = $('input[name=startTime]').val(); //ambil value dari input dengan nama startTime
+    var endTime = $('input[name=endTime]').val(); //ambil value dari input dengan nama endTime
     
-    if(title && startTime && endTime) {
-      // Format waktu dari 24jam ke 12jam (opsional)
-      var timeRange = startTime + ' - ' + endTime;
+    if(title && startTime && endTime) { //jika title, starTime, endTIme sudah terisi maka akan dieksekusi
+      var timeRange = startTime + ' - ' + endTime; //menggabungkan startTime dengan endTime
       
       var newItem = `
         <li>
@@ -31,26 +28,25 @@ $(document).ready(function() {
             </div>
           </div>
         </li>
-      `;
+      `; //declare task baru
       
-      $('ul').prepend(newItem);
-      $('ul li:first').slideDown(300);
+      $('ul').prepend(newItem); //nambah task baru di dalam ul mulai dari urutan awal
       
-      // Kosongkan semua input
+      // Kosongkan semua input, agar user tau task berhasil ditambah
       $('input[name=listItem]').val('');
       $('input[name=taskDesc]').val('');
       $('input[name=startTime]').val('');
       $('input[name=endTime]').val('');
       
-      $('ul').sortable('refresh');
-      alert('Task added!');
+      $('ul').sortable('refresh'); //untuk update sortable list, agar task yg baru di add bisa disort
+      alert('Task added!'); //akan keluar pop up task added
     } else {
-      alert('Title still empty!');
+      alert('Title still empty!'); //kalau tidak memenuhi kondisi if, keluar pop up
     }
   });
 
-  $(document).on('dblclick', 'li', function() {
-    var $item = $(this);
+  $(document).on('dblclick', 'li', function() { //fitur double klik task
+    var $item = $(this); //declare task sebagai variabel $item
     
     //cek apakah task sudah complete?
     if ($item.hasClass('completed')) {
